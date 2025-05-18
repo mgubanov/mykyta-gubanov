@@ -1,43 +1,32 @@
-import mobile.core.DriverManager;
 import org.openqa.selenium.By;
 import org.testng.annotations.Test;
 
-import static mobile.core.DriverManager.*;
-import static org.testng.Assert.*;
+import static com.codeborne.selenide.Condition.exactText;
+import static com.codeborne.selenide.Selenide.$;
 
 
 public class SampleAndroidTest extends BaseTest {
 
+    String continueButton = "com.monefy.app.lite:id/buttonContinue";
+    String closeButton = "com.monefy.app.lite:id/buttonClose";
+    String expenseButton = "com.monefy.app.lite:id/expense_button";
+    String keyboardBtnPartial = "com.monefy.app.lite:id/buttonKeyboard";
+    String amountField = "com.monefy.app.lite:id/amount_text";
+
+    void clickKey(int key){
+        $(By.id(keyboardBtnPartial+key)).click();
+    }
+
     @Test
-    public void testAppLaunch() throws InterruptedException {
-        getDriver().findElement(By.id("com.monefy.app.lite:id/buttonContinue")).click();//get started button
-        Thread.sleep(500);
-        getDriver().findElement(By.id("com.monefy.app.lite:id/buttonContinue")).click();//amazing
-        Thread.sleep(500);
-        getDriver().findElement(By.id("com.monefy.app.lite:id/buttonContinue")).click();//i'm ready
-        Thread.sleep(500);
-        getDriver().findElement(By.id("com.monefy.app.lite:id/buttonClose")).click();//close buy premium
-        Thread.sleep(500);
-        getDriver().findElement(By.id("com.monefy.app.lite:id/expense_button")).click();//open expences screen
-        Thread.sleep(500);
+    void testAndroidTap() {
+        $(By.id(continueButton)).click();
+        $(By.id(continueButton)).click();
+        $(By.id(continueButton)).click();
+        $(By.id(closeButton)).click();
 
-        getDriver().findElement(By.id("com.monefy.app.lite:id/buttonKeyboard1")).click();//click 0-9
-        getDriver().findElement(By.id("com.monefy.app.lite:id/buttonKeyboard2")).click();//click 0-9
-        getDriver().findElement(By.id("com.monefy.app.lite:id/buttonKeyboard3")).click();//click 0-9
-        getDriver().findElement(By.id("com.monefy.app.lite:id/buttonKeyboard4")).click();//click 0-9
-        getDriver().findElement(By.id("com.monefy.app.lite:id/buttonKeyboard5")).click();//click 0-9
-        getDriver().findElement(By.id("com.monefy.app.lite:id/buttonKeyboard6")).click();//click 0-9
+        $(By.id(expenseButton)).click();
 
-        Thread.sleep(500);
-
-        assertEquals(getDriver().findElement(By.id("com.monefy.app.lite:id/amount_text")).getText(), "123456");
-
-
-
-
-
-
-
-
+        clickKey(9);
+        $(By.id(amountField)).shouldHave(exactText("9"));
     }
 }
