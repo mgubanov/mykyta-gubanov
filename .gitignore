@@ -1,0 +1,28 @@
+# IDE files
+.idea/
+*.iml
+
+# OS files
+.DS_Store
+
+# Gradle
+.gradle/
+build/
+
+# Allure results
+allure-results/
+
+# APKs
+*.apk
+
+# Logs
+*.log
+
+# Wrapper jar
+gradle-wrapper.jar
+
+# Test results
+*.json
+
+# System or user-specific config
+*.xml
