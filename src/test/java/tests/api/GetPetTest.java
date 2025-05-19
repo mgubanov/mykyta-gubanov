@@ -4,7 +4,7 @@ import io.restassured.http.ContentType;
 import org.testng.annotations.Test;
 
 import static io.restassured.RestAssured.given;
-import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.*;
 
 public class GetPetTest extends ApiBaseTest {
 
@@ -43,15 +43,41 @@ public class GetPetTest extends ApiBaseTest {
     }
 
     @Test
-    public void getPetByTag() {
+    public void getPetsByValidTag() {
         given()
+                .accept(ContentType.JSON)
+                .queryParam("tags", pet.getTags().get(0).getName())
                 .when()
-                .get()
+                .get(petFindByTags)
                 .then()
                 .statusCode(200)
                 .contentType(ContentType.JSON)
-                .body("id", equalTo(pet.getId()));
+                .body("id", hasItem(pet.getId()));
     }
 
+    @Test
+    public void getPetsByInvalidTag() {
+        given()
+                .accept(ContentType.JSON)
+                .queryParam("tags", "nonExistingTag")
+                .when()
+                .get(petFindByTags)
+                .then()
+                .statusCode(200)
+                .contentType(ContentType.JSON)
+                .body("size()", equalTo(0));  // expects empty list for invalid tag
+    }
+
+    @Test
+    public void getPetsByEmptyTag() {
+        given()
+                .accept(ContentType.JSON)
+                .queryParam("tags", "")
+                .when()
+                .get(petFindByTags)
+                .then()
+                .statusCode(400)
+                .body(equalTo("No tags provided. Try again?"));
+    }
 }
 
