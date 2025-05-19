@@ -21,5 +21,5 @@ public class Pet {
     @Builder.Default
     private List<Tag> tags = List.of(new Tag(0, "default_tag_0"), new Tag(1, "default_tag_1"));
     @Builder.Default
-    private String status = "default_status_0";
+    private Status status = Status.AVAILABLE;
 }
