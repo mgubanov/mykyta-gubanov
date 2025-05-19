@@ -14,20 +14,14 @@ public class GetPetTest extends ApiBaseTest {
 
     @Test
     public void getPetByValidId() {
-        given()
-                .when()
-                .get(petFindById.formatted(pet.getId()))
-                .then()
-                .statusCode(200)
-                .contentType(ContentType.JSON)
-                .body("id", equalTo(pet.getId()));
+        getAndVerifyPet(defaultPet);
     }
 
     @Test
     public void getPetByInvalidId() {
         given()
                 .when()
-                .get(petFindById.formatted(invalidId))
+                .get(petFindByIdPath.formatted(invalidId))
                 .then()
                 .statusCode(404)
                 .contentType(ContentType.JSON)
@@ -39,7 +33,7 @@ public class GetPetTest extends ApiBaseTest {
     public void getPetByInvalidFormatId() {
         given()
                 .when()
-                .get(petFindById.formatted("invalidId"))
+                .get(petFindByIdPath.formatted("invalidId"))
                 .then()
                 .statusCode(400)
                 .contentType(ContentType.JSON)
@@ -50,13 +44,13 @@ public class GetPetTest extends ApiBaseTest {
     public void getPetsByValidTag() {
         given()
                 .accept(ContentType.JSON)
-                .queryParam("tags", pet.getTags().get(0).getName())
+                .queryParam("tags", defaultPet.getTags().get(0).getName())
                 .when()
-                .get(petFindByTags)
+                .get(petFindByTagsPath)
                 .then()
                 .statusCode(200)
                 .contentType(ContentType.JSON)
-                .body("id", hasItem(pet.getId()));
+                .body("id", hasItem(defaultPet.getId()));
     }
 
     @Test
@@ -65,7 +59,7 @@ public class GetPetTest extends ApiBaseTest {
                 .accept(ContentType.JSON)
                 .queryParam("tags", "nonExistingTag")
                 .when()
-                .get(petFindByTags)
+                .get(petFindByTagsPath)
                 .then()
                 .statusCode(200)
                 .contentType(ContentType.JSON)
@@ -78,7 +72,7 @@ public class GetPetTest extends ApiBaseTest {
                 .accept(ContentType.JSON)
                 .queryParam("tags", "")
                 .when()
-                .get(petFindByTags)
+                .get(petFindByTagsPath)
                 .then()
                 .statusCode(400)
                 .body(equalTo("No tags provided. Try again?"));
@@ -90,7 +84,7 @@ public class GetPetTest extends ApiBaseTest {
                 .accept(ContentType.JSON)
                 .queryParam("status", status)
                 .when()
-                .get(petFindByStatus)
+                .get(petFindByStatusPath)
                 .then()
                 .statusCode(200)
                 .body("size()", greaterThan(0));
@@ -102,7 +96,7 @@ public class GetPetTest extends ApiBaseTest {
                 .accept(ContentType.JSON)
                 .queryParam("status", invalidStatus)
                 .when()
-                .get(petFindByStatus)
+                .get(petFindByStatusPath)
                 .then()
                 .statusCode(400)
                 .body("message", equalTo("Input error: query parameter `status value `%s` is not in the allowable values `[available, pending, sold]`".formatted(invalidStatus)));

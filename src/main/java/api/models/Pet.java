@@ -12,7 +12,7 @@ import java.util.List;
 @AllArgsConstructor
 @Builder
 public class Pet {
-    private int id;
+    private Integer id;
     private String name;
     @Builder.Default
     private Category category = new Category(1, "default_category_0");
@@ -21,5 +21,5 @@ public class Pet {
     @Builder.Default
     private List<Tag> tags = List.of(new Tag(0, "default_tag_0"), new Tag(1, "default_tag_1"));
     @Builder.Default
-    private Status status = Status.AVAILABLE;
+    private String status = Status.AVAILABLE.toString().toLowerCase();
 }
