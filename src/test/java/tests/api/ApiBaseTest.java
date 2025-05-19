@@ -15,7 +15,7 @@ import static org.hamcrest.Matchers.equalTo;
 
 public class ApiBaseTest {
 
-    protected String petPath = "/pets";
+    protected String petPath = "/pet";
     protected String petFindByStatusPath = "/pet/findByStatus";
     protected String petFindByTagsPath = "/pet/findByTags";
     protected String petFindByIdPath = "/pet/%s";
@@ -44,7 +44,7 @@ public class ApiBaseTest {
         given()
                 .body(defaultPet)
                 .when()
-                .post("/pet")
+                .post(petPath)
                 .then()
                 .statusCode(200);
     }

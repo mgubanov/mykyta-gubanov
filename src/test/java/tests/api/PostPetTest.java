@@ -4,7 +4,6 @@ import api.models.Category;
 import api.models.Pet;
 import api.models.Status;
 import api.models.Tag;
-import io.restassured.http.ContentType;
 import org.testng.annotations.Test;
 
 import java.util.List;
@@ -67,24 +66,65 @@ public class PostPetTest extends ApiBaseTest {
     }
 
     @Test
-    public void updatePetByPost() {
+    public void postPetWithoutId() {
+        var id = ThreadLocalRandom.current().nextInt(1, 1000);
+
+        var testPet = Pet.builder()
+                .name("pet" + id)
+                .build();
 
         given()
-                .body(defaultPet)
+                .body(testPet)
                 .when()
-                .post(petPath.formatted(defaultPet.getId()))
+                .post(petPath)
                 .then()
-                .statusCode(200)
-                .body("id", equalTo(defaultPet.getId()))
-                .body("name", equalTo(defaultPet.getName()))
-                .body("category.id", equalTo(defaultPet.getCategory().getId()))
-                .body("category.name", equalTo(defaultPet.getCategory().getName()))
-                .body("tags.id", containsInAnyOrder(defaultPet.getTags().stream().map(Tag::getId).toArray()))
-                .body("tags.name", containsInAnyOrder(defaultPet.getTags().stream().map(Tag::getName).toArray()))
-                .body("status", equalTo(defaultPet.getStatus()))
-                .body("photoUrls", equalTo(defaultPet.getPhotoUrls()));
+                .statusCode(500)
+                .body("message", containsString("There was an error processing your request. It has been logged"));
+    }
 
+    @Test
+    public void updatePetByPost() {
+        String newName = "newName";
+        String newStatus = "newStatus";
+
+        given()
+                .accept("*/*")
+                .when()
+                .post(petFindByIdPath.formatted(defaultPet.getId()) + "?name=" + newName + "&status=" + newStatus)
+                .then()
+                .statusCode(200);
+
+        defaultPet.setName(newName);
+        defaultPet.setStatus(newStatus);
         getAndVerifyPet(defaultPet);
+    }
+
+    @Test
+    public void updatePetByPostWithInvalidId() {
+        String newName = "newName";
+        String newStatus = "newStatus";
+
+        given()
+                .accept("*/*")
+                .when()
+                .post(petFindByIdPath.formatted(invalidId) + "?name=" + newName + "&status=" + newStatus)
+                .then()
+                .statusCode(404)
+                .body(equalTo("Pet not found"));
+    }
+
+    @Test
+    public void updatePetByPostWithoutId() {
+        String newName = "newName";
+        String newStatus = "newStatus";
+
+        given()
+                .accept("*/*")
+                .when()
+                .post(petFindByIdPath + "?name=" + newName + "&status=" + newStatus)
+                .then()
+                .statusCode(400)
+                .body("message", containsString("Input error: couldn't convert `%s` to type `class java.lang.Long`"));
     }
 }
 
