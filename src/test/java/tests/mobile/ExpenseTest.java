@@ -1,6 +1,5 @@
 package tests.mobile;
 
-import mobile.screens.AddExpenseFromCategoryScreen;
 import org.testng.annotations.Test;
 
 import static com.codeborne.selenide.Condition.exactText;

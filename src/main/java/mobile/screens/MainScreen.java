@@ -20,6 +20,10 @@ public class MainScreen {
     public SelenideElement balanceAmount;
     @AndroidFindBy(xpath="//android.widget.FrameLayout[contains(@resource-id, \"piegraph\")]//android.widget.ImageView")
     public ElementsCollection quickCategories;
+    @AndroidFindBy(id="com.monefy.app.lite:id/menu_search")
+    public SelenideElement search;
+    @AndroidFindBy(id="com.monefy.app.lite:id/et_search")
+    public SelenideElement searchBar;
 
     public AddExpenseFromCategoryScreen openAddExpenseScreen(){
         expenseButton.click();
@@ -31,7 +35,7 @@ public class MainScreen {
         return screen(AddExpenseFromCategoryScreen.class);
     }
 
-    public AddTransactionScreen openAddIncomeScreen(){
+    public AddTransactionScreen<?> openAddIncomeScreen(){
         incomeButton.click();
         return screen(AddTransactionScreen.class);
     }

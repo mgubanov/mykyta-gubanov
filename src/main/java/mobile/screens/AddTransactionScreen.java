@@ -13,6 +13,8 @@ public class AddTransactionScreen <T extends AddTransactionScreen<T>> {
     public SelenideElement amountField;
     @AndroidFindBy(id="com.monefy.app.lite:id/keyboard_action_button")
     public SelenideElement chooseCategory;
+    @AndroidFindBy(id="com.monefy.app.lite:id/textViewNote")
+    public SelenideElement noteInputField;
     @AndroidFindBy(xpath = "//*[contains(@resource-id, \"com.monefy.app.lite:id/buttonKeyboard\")]")
     public ElementsCollection keyboardButton;
 
