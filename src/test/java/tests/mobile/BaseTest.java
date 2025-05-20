@@ -3,10 +3,11 @@ package tests.mobile;
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.appium.AppiumDriverRunner;
 import io.appium.java_client.android.nativekey.KeyEvent;
-import mobile.core.AndroidDriver;
+import mobile.core.AndroidDriverSetup;
 import mobile.screens.MainScreen;
 import mobile.screens.SearchResultsScreen;
 import mobile.screens.onboarding.OnboardingGetStartedScreen;
+import mobile.utils.Config;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeSuite;
 
@@ -19,14 +20,14 @@ public class BaseTest {
 
     @AfterMethod
     public void tearDown() {
-        AppiumDriverRunner.getAndroidDriver().removeApp(AndroidDriver.APP_PACKAGE);
-        AppiumDriverRunner.getAndroidDriver().installApp(AndroidDriver.APP_PATH);
-        relaunchApp(AndroidDriver.APP_PACKAGE);
+        AppiumDriverRunner.getAndroidDriver().removeApp(Config.appPackage());
+        AppiumDriverRunner.getAndroidDriver().installApp(Config.appPath());
+        relaunchApp(Config.appPackage());
     }
 
     @BeforeSuite
     public void beforeSuite() {
-        Configuration.browser = AndroidDriver.class.getName();
+        Configuration.browser = AndroidDriverSetup.class.getName();
         launchApp();
     }
 

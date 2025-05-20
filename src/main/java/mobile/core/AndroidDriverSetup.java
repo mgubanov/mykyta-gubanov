@@ -1,7 +1,9 @@
 package mobile.core;
 
 import com.codeborne.selenide.WebDriverProvider;
+import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.options.UiAutomator2Options;
+import mobile.utils.Config;
 import org.jspecify.annotations.NonNull;
 import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.WebDriver;
@@ -11,11 +13,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.time.Duration;
 
-public class AndroidDriver implements WebDriverProvider {
-
-    public static final String APP_PATH = "/Users/mykyta.gubanov/IdeaProjects/mykyta-gubanov/src/main/resources/apps/com.monefy.app.lite_1.18.0.apk";
-    public static final String APP_PACKAGE = "com.monefy.app.lite";
-    public static final String DEVICE_NAME = "R5CXA32PS6P";
+public class AndroidDriverSetup implements WebDriverProvider {
 
     @Override
     @CheckReturnValue
@@ -23,16 +21,16 @@ public class AndroidDriver implements WebDriverProvider {
     public WebDriver createDriver(Capabilities capabilities) {
         UiAutomator2Options options = new UiAutomator2Options();
         options.merge(capabilities);
-        options.setPlatformName("Android");
-        options.setPlatformVersion("14.0");
-        options.setDeviceName(DEVICE_NAME);
+        options.setPlatformName(Config.platformName());
+        options.setPlatformVersion(Config.platformVersion());
+        options.setDeviceName(Config.deviceName());
         options.setNewCommandTimeout(Duration.ofSeconds(10));
-        options.setApp(APP_PATH);
-        options.setAppPackage(APP_PACKAGE);
-        options.setAppActivity("com.monefy.activities.main.MainActivity_");
+        options.setApp(Config.appPath());
+        options.setAppPackage(Config.appPackage());
+        options.setAppActivity(Config.appActivity());
 
         try {
-            return new io.appium.java_client.android.AndroidDriver(new URL("http://127.0.0.1:4723/wd/hub"), options);
+            return new AndroidDriver(new URL(Config.appiumServerUrl()), options);
         } catch (MalformedURLException e) {
             throw new RuntimeException(e);
         }

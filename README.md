@@ -44,9 +44,10 @@ project-root/
    ```bash
    adb devices
    ```
-3. Configure the following:
-    - App path
-    - Device ID
+3. Configure the following under `src/main/resources/config.properties`:
+    - app.path
+    - device.name
+    - platform.version
 4. Start the Appium server:
    ```bash
    appium
