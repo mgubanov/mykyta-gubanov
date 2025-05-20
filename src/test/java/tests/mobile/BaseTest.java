@@ -20,9 +20,9 @@ public class BaseTest {
 
     @AfterMethod
     public void tearDown() {
-        AppiumDriverRunner.getAndroidDriver().removeApp(Config.appPackage());
-        AppiumDriverRunner.getAndroidDriver().installApp(Config.appPath());
-        relaunchApp(Config.appPackage());
+        AppiumDriverRunner.getAndroidDriver().removeApp(Config.getAppPackage());
+        AppiumDriverRunner.getAndroidDriver().installApp(Config.getAppPath());
+        relaunchApp(Config.getAppPackage());
     }
 
     @BeforeSuite

@@ -11,7 +11,7 @@ import org.slf4j.helpers.CheckReturnValue;
 
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.time.Duration;
+import static mobile.utils.Config.*;
 
 public class AndroidDriverSetup implements WebDriverProvider {
 
@@ -21,16 +21,16 @@ public class AndroidDriverSetup implements WebDriverProvider {
     public WebDriver createDriver(Capabilities capabilities) {
         UiAutomator2Options options = new UiAutomator2Options();
         options.merge(capabilities);
-        options.setPlatformName(Config.platformName());
-        options.setPlatformVersion(Config.platformVersion());
-        options.setDeviceName(Config.deviceName());
-        options.setNewCommandTimeout(Duration.ofSeconds(10));
-        options.setApp(Config.appPath());
-        options.setAppPackage(Config.appPackage());
-        options.setAppActivity(Config.appActivity());
+        options.setPlatformName(getPlatformName());
+        options.setPlatformVersion(getPlatformVersion());
+        options.setDeviceName(getDeviceName());
+        options.setNewCommandTimeout(getCommandTimeout());
+        options.setApp(Config.getAppPath());
+        options.setAppPackage(getAppPackage());
+        options.setAppActivity(getAppActivity());
 
         try {
-            return new AndroidDriver(new URL(Config.appiumServerUrl()), options);
+            return new AndroidDriver(new URL(getAppiumServerUrl()), options);
         } catch (MalformedURLException e) {
             throw new RuntimeException(e);
         }

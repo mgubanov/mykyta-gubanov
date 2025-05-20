@@ -19,12 +19,12 @@ public class Config {
         }
     }
 
-    public static String appPath() { return props.getProperty("app.path"); }
-    public static String appPackage() { return props.getProperty("app.package"); }
-    public static String appActivity() { return props.getProperty("app.activity"); }
-    public static String deviceName() { return props.getProperty("device.name"); }
-    public static String platformName() { return props.getProperty("platform.name"); }
-    public static String platformVersion() { return props.getProperty("platform.version"); }
-    public static String appiumServerUrl() { return props.getProperty("appium.server.url"); }
-    public static Duration commandTimeout() { return Duration.ofSeconds(Long.parseLong(props.getProperty("command.timeout.seconds"))); }
+    public static String getAppPath() { return props.getProperty("app.path"); }
+    public static String getAppPackage() { return props.getProperty("app.package"); }
+    public static String getAppActivity() { return props.getProperty("app.activity"); }
+    public static String getDeviceName() { return props.getProperty("device.name"); }
+    public static String getPlatformName() { return props.getProperty("platform.name"); }
+    public static String getPlatformVersion() { return props.getProperty("platform.version"); }
+    public static String getAppiumServerUrl() { return props.getProperty("appium.server.url"); }
+    public static Duration getCommandTimeout() { return Duration.ofSeconds(Long.parseLong(props.getProperty("command.timeout.seconds"))); }
 }

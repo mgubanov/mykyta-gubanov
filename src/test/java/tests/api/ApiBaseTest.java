@@ -32,9 +32,9 @@ public class ApiBaseTest {
     }
 
     @BeforeMethod
-    void prepareTestData() {
+    public void prepareTestData() {
         var id = ThreadLocalRandom.current().nextInt(1, 10001);
-        invalidId = ThreadLocalRandom.current().nextInt(10000, 11000);
+        invalidId = ThreadLocalRandom.current().nextInt(10001, 11000);
 
         defaultPet = Pet.builder()
                 .id(id)
@@ -49,7 +49,7 @@ public class ApiBaseTest {
                 .statusCode(200);
     }
 
-    void getAndVerifyPet(Pet pet) {
+    protected void getAndVerifyPet(Pet pet) {
         given()
                 .when()
                 .get(petFindByIdPath.formatted(pet.getId()))
