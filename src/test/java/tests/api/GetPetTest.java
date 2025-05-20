@@ -112,7 +112,7 @@ public class GetPetTest extends ApiBaseTest {
     @DataProvider(name = "invalidStatusProvider")
     public Object[][] invalidStatusProvider() {
         return new Object[][]{
-                {Status.AVAILABLE.toString()},//note this is invalid value
+                {Status.AVAILABLE.toString()},//this is invalid value
                 {"invalidStatus"},
                 {""}
         };
