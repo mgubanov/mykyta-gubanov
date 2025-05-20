@@ -2,7 +2,6 @@ package tests.mobile;
 
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.appium.AppiumDriverRunner;
-import com.codeborne.selenide.logevents.SelenideLogger;
 import io.appium.java_client.android.nativekey.KeyEvent;
 import mobile.core.AndroidDriver;
 import mobile.screens.MainScreen;

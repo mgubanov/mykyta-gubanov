@@ -9,6 +9,7 @@ import org.slf4j.helpers.CheckReturnValue;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.time.Duration;
 
 public class AndroidDriver implements WebDriverProvider {
 
@@ -25,8 +26,7 @@ public class AndroidDriver implements WebDriverProvider {
         options.setPlatformName("Android");
         options.setPlatformVersion("14.0");
         options.setDeviceName(DEVICE_NAME);
-//        options.setNewCommandTimeout(Duration.ofSeconds(11));
-//        options.setFullReset(false);
+        options.setNewCommandTimeout(Duration.ofSeconds(10));
         options.setApp(APP_PATH);
         options.setAppPackage(APP_PACKAGE);
         options.setAppActivity("com.monefy.activities.main.MainActivity_");
