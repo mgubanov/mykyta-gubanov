@@ -1,4 +1,4 @@
-# Mobile Test Automation Framework
+# 1. Mobile Test Automation Framework of Monefy App
 
 ## Project structure
 
@@ -22,6 +22,8 @@ project-root/
 │   │       ├── api/
 │   │       └── mobile/
 └── resources/
+│   │       ├── apireport/
+│   │       └── mobilereport/
 ```
 
 ## Tech Stack
@@ -31,7 +33,6 @@ project-root/
 - **TestNG** – for test orchestration and parallel execution.
 - **Selenide** – simplifies UI test writing with built-in waits and concise syntax.
 - **Appium** – enables cross-platform mobile testing (Android and iOS).
-- **Allure** – for generating clear and informative test reports.
 
 ## Setup Instructions
 
@@ -66,14 +67,6 @@ These cover the three most important E2E user flows identified during explorator
 2. **Income Flow** – Creating and verifying income flow.
 3. **Search Flow** – Searching and filtering existing transactions.
 
-## Reporting
-
-To generate and view the Allure report:
-
-```bash
-allure serve build/allure-results
-```
-
 ## Approach and Architecture
 
 This framework is designed to be intuitive, scalable, and easy to maintain.
@@ -82,32 +75,14 @@ This framework is designed to be intuitive, scalable, and easy to maintain.
 - **Selenide** was chosen to simplify test code, improve stability with built-in waits, and reduce boilerplate.
 - Elements are located using `@AndroidFindBy` annotations. To support iOS, corresponding `@iOSXCUITFindBy` annotations can be added without changing test logic—ensuring cross-platform compatibility while keeping the codebase clean and maintainable.
 
+## Report
+📄 **[Test Report](src/test/resources/mobilereport/reports/tests/test/index.html)**
+📄 **[Test Screenshot](src/test/resources/mobilereport/screenshot.png)**
+You can view the test report by opening this link in the repo.
 
-
-
-
-END:
-connect android device
-adb devices - get your ID here
-setup app path
-setup app ID
-appium - to run appium server
-
-
-./gradlew clean test       # run tests and generate allure-results/
-./gradlew allureReport     # generate static report in build/reports/allure-report/
-./gradlew allureServe      # start server and open report in browser from temp folder
 
 
 ./gradlew clean test --tests "tests.api.*" - run api only
-./gradlew clean test --tests "tests.mobile.*" - run mobile only
-
-
-
-
-
-
-
 run petstore
 docker pull swaggerapi/petstore3:unstable
 docker run --name petstore3 -d -p 8080:8080 swaggerapi/petstore3:unstable

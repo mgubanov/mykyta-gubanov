@@ -4,7 +4,6 @@ import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.appium.AppiumDriverRunner;
 import com.codeborne.selenide.logevents.SelenideLogger;
 import io.appium.java_client.android.nativekey.KeyEvent;
-import io.qameta.allure.selenide.AllureSelenide;
 import mobile.core.AndroidDriver;
 import mobile.screens.MainScreen;
 import mobile.screens.SearchResultsScreen;
@@ -30,7 +29,6 @@ public class BaseTest {
     public void beforeSuite() {
         Configuration.browser = AndroidDriver.class.getName();
         launchApp();
-        SelenideLogger.addListener("AllureSelenide", new AllureSelenide());
     }
 
     protected MainScreen completeOnboardingFlow(){
