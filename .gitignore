@@ -9,9 +9,6 @@
 .gradle/
 build/
 
-# Allure results
-allure-results/
-
 # APKs
 *.apk
 
