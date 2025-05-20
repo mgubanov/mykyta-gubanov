@@ -1,7 +1,7 @@
-# 1. Exploratory testing of Monefy App
+# Task 1. Exploratory testing of Monefy App
 📄 **[Task 1](exploratory_testing.md)**
 
-# 2. Mobile Test Automation Framework of Monefy App
+# Task 2. Mobile Test Automation Framework of Monefy App
 
 ## Project structure
 
@@ -36,6 +36,7 @@ project-root/
 - **TestNG** – for test orchestration and parallel execution.
 - **Selenide** – simplifies UI test writing with built-in waits and concise syntax.
 - **Appium** – enables cross-platform mobile testing (Android and iOS).
+- **Lombok** – Reduces boilerplate code by auto-generating getters, setters, constructors, and more using annotations.
 
 ## Setup Instructions
 
@@ -85,7 +86,7 @@ This framework is designed to be intuitive, scalable, and easy to maintain.
 You can view the test report by opening this link in the repo.
 
 
-# 3. Api Test Automation Framework of Petstore
+# Task 3. Api Test Automation Framework of Petstore
 
 ## Tech Stack
 
