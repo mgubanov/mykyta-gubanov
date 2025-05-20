@@ -13,6 +13,10 @@ import java.time.Duration;
 
 public class AndroidDriver implements WebDriverProvider {
 
+    public static final String APP_PATH = "/Users/mykyta.gubanov/IdeaProjects/mykyta-gubanov/src/main/resources/apps/com.monefy.app.lite_1.18.0.apk";
+    public static final String APP_PACKAGE = "com.monefy.app.lite";
+    public static final String DEVICE_NAME = "R5CXA32PS6P";
+
     @Override
     @CheckReturnValue
     @NonNull
@@ -21,11 +25,11 @@ public class AndroidDriver implements WebDriverProvider {
         options.merge(capabilities);
         options.setPlatformName("Android");
         options.setPlatformVersion("14.0");
-        options.setDeviceName("R5CXA32PS6P");
+        options.setDeviceName(DEVICE_NAME);
         options.setNewCommandTimeout(Duration.ofSeconds(11));
 //        options.setFullReset(false);
-        options.setApp("/Users/mykyta.gubanov/IdeaProjects/mykyta-gubanov/src/main/resources/apps/com.monefy.app.lite_1.18.0.apk");
-        options.setAppPackage("com.monefy.app.lite");
+        options.setApp(APP_PATH);
+        options.setAppPackage(APP_PACKAGE);
         options.setAppActivity("com.monefy.activities.main.MainActivity_");
 
         try {
