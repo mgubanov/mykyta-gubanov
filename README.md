@@ -1,4 +1,7 @@
-# 1. Mobile Test Automation Framework of Monefy App
+# 1. Exploratory testing of Monefy App
+📄 **[Task 1](exploratory_testing.md)**
+
+# 2. Mobile Test Automation Framework of Monefy App
 
 ## Project structure
 
@@ -81,7 +84,7 @@ This framework is designed to be intuitive, scalable, and easy to maintain.
 You can view the test report by opening this link in the repo.
 
 
-# 2. Api Test Automation Framework of Petstore
+# 3. Api Test Automation Framework of Petstore
 
 ## Tech Stack
 
