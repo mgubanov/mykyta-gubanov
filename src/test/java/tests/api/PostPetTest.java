@@ -4,8 +4,10 @@ import api.models.Category;
 import api.models.Pet;
 import api.models.Status;
 import api.models.Tag;
+import io.restassured.http.ContentType;
 import org.testng.annotations.Test;
 
+import java.io.File;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -125,6 +127,29 @@ public class PostPetTest extends ApiBaseTest {
                 .then()
                 .statusCode(400)
                 .body("message", containsString("Input error: couldn't convert `%s` to type `class java.lang.Long`"));
+    }
+
+    @Test
+    void uploadImageTest() {
+        int petId = 1;
+        //This particular endpoint is buggy, on api/v3 returns 415
+        //I've added path to real resource just to demonstate how this should work.
+        var url = String.format("https://petstore.swagger.io/v2/pet/%s/uploadImage", petId);
+        var fileName = "git.png";
+        var file = new File(fileName);
+
+        given()
+                .multiPart("file", file, "image/png")
+                .contentType("multipart/form-data")
+                .accept("application/json")
+                .when()
+                .post(url)
+                .then()
+                .contentType(ContentType.JSON)
+                .statusCode(200)
+                .body("code", equalTo(200))
+                .body("type", equalTo("unknown"))
+                .body("message", containsString("File uploaded to ./" + fileName));
     }
 }
 

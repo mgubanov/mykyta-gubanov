@@ -125,6 +125,12 @@ REST-assured is a great Java library made for testing REST APIs. It has a clean,
 Lombok helps cut down on repetitive code by automatically creating things like getters and setters, so I can focus more on writing the tests themselves.
 
 ## Report
+NOTE:
+
+`deletePetByInvalidId` - product bug, this endpoint doesn't work as expected
+
+`uploadImageTest` - api bug, cannot upload image on api/v3, for demo purposes I've added test for real resource v2
+
 📄 **[Test Report](src/test/resources/apireport/reports/tests/test/index.html)**
 📄 **[Test Screenshot](src/test/resources/apireport/screenshot.png)**
 You can view the test report by opening this link in the repo.
