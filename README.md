@@ -117,20 +117,17 @@ You can view the test report by opening this link in the repo.
 
 ## Approach and Architecture
 
-I chose this tech stack because it’s powerful, easy to use, and helps me write API tests quickly and clearly. Java 17 gives me modern features and good stability. Gradle with Groovy makes building and managing tests simple and smooth.
-
-TestNG is a reliable testing framework that lets me organize tests well, run them in parallel, and get detailed results.
-
-REST-assured is a great Java library made for testing REST APIs. It has a clean, easy-to-read syntax that makes writing and understanding tests much easier.
-
-Lombok helps cut down on repetitive code by automatically creating things like getters and setters, so I can focus more on writing the tests themselves.
+* I chose this tech stack because it’s powerful, easy to use, and helps me write API tests quickly and clearly. Java 17 gives me modern features and good stability. Gradle with Groovy makes building and managing tests simple and smooth.
+* TestNG is a reliable testing framework that lets me organize tests well, run them in parallel, and get detailed results.
+* REST-Assured is a great Java library made for testing REST APIs. It has a clean, easy to read syntax that makes writing and understanding tests much easier.
+* Lombok helps cut down on repetitive code by automatically creating things like getters and setters, so I can focus more on writing the tests themselves.
 
 ## Report
-NOTE:
+**NOTE:**
 
-`deletePetByInvalidId` - product bug, this endpoint doesn't work as expected
+`deletePetByInvalidId` - a product bug, this endpoint doesn't work as expected.
 
-`uploadImageTest` - api bug, cannot upload image on api/v3, for demo purposes I've added test for real resource v2
+`uploadImageTest` - an api bug, I couldn't upload image on api/v3, for demo purposes I've added test for real resource v2.
 
 📄 **[Test Report](src/test/resources/apireport/reports/tests/test/index.html)**
 📄 **[Test Screenshot](src/test/resources/apireport/screenshot.png)**
