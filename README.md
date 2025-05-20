@@ -81,8 +81,46 @@ This framework is designed to be intuitive, scalable, and easy to maintain.
 You can view the test report by opening this link in the repo.
 
 
+# 2. Api Test Automation Framework of Petstore
 
-./gradlew clean test --tests "tests.api.*" - run api only
-run petstore
-docker pull swaggerapi/petstore3:unstable
-docker run --name petstore3 -d -p 8080:8080 swaggerapi/petstore3:unstable
+## Tech Stack
+
+- **Java 17 (LTS)** – chosen for long-term support and modern language features.
+- **Gradle (Groovy DSL)** – for build management and dependency handling.
+- **TestNG** – for test orchestration and parallel execution.
+- **REST-assured** – Java library for testing and validating REST APIs with a simple and fluent syntax.
+- **Lombok** – Reduces boilerplate code by auto-generating getters, setters, constructors, and more using annotations.
+
+## How to install & run
+
+* Pull service
+   ```bash
+   docker pull swaggerapi/petstore3:unstable
+   ```
+* Remove old containers(Optional)
+  ```bash
+  docker rm -f $(docker ps -a -q)
+  ```
+* Start service
+  ```bash
+  docker run --name petstore3 -d -p 8080:8080 swaggerapi/petstore3:unstable
+  ```
+* Run tests
+   ```bash
+  ./gradlew clean test --tests "tests.api.*"
+  ```
+
+## Approach and Architecture
+
+I chose this tech stack because it’s powerful, easy to use, and helps me write API tests quickly and clearly. Java 17 gives me modern features and good stability. Gradle with Groovy makes building and managing tests simple and smooth.
+
+TestNG is a reliable testing framework that lets me organize tests well, run them in parallel, and get detailed results.
+
+REST-assured is a great Java library made for testing REST APIs. It has a clean, easy-to-read syntax that makes writing and understanding tests much easier.
+
+Lombok helps cut down on repetitive code by automatically creating things like getters and setters, so I can focus more on writing the tests themselves.
+
+## Report
+📄 **[Test Report](src/test/resources/apireport/reports/tests/test/index.html)**
+📄 **[Test Screenshot](src/test/resources/apireport/screenshot.png)**
+You can view the test report by opening this link in the repo.

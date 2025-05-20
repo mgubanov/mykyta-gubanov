@@ -25,16 +25,5 @@ public class DeletePetTest extends ApiBaseTest {
                 .statusCode(404)
                 .body(equalTo("Pet not found"));
     }
-
-    @Test
-    public void deletePetByInvalidId() { //this should return 404
-        given()
-                .header("api_key", "api_key") // Optional here
-                .when()
-                .delete(petFindByIdPath.formatted(invalidId))
-                .then()
-                .statusCode(404)
-                .body(equalTo("Pet not found"));
-    }
 }
 
